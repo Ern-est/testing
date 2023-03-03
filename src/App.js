@@ -10,7 +10,6 @@ import AllMemes from './components/AllMemes';
 import SearchForm from './components/SearchForm';
 import EditMemeForm from './components/EditMemeForm';
 import DeleteMemeButton from './components/DeleteMemeButton';
-
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [username, setUsername] = useState('');
