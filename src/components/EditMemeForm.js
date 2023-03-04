@@ -1,51 +1,76 @@
-import { useState, useEffect } from "react";
-import { useNavigation } from "react-router-dom";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import axios from 'axios';
 
-const EditMemeForm = ({ match }) => {
-  const [meme, setMeme] = useState({ caption: "", url: "" });
-  const history = useNavigation();
+const EditMemeForm = () => {
+  const navigate = useNavigate();
+  const { id } = useParams();
+
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [imageUrl, setImageUrl] = useState('');
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchMeme = async () => {
-      const { data } = await axios.get(`/api/memes/${match.params.id}`);
-      setMeme(data);
+      setLoading(true);
+      const response = await axios.get(`http://localhost:5000/memes/${id}`);
+      const meme = response.data;
+      setTitle(meme.title);
+      setDescription(meme.description);
+      setImageUrl(meme.imageUrl);
+      setLoading(false);
     };
     fetchMeme();
-  }, [match.params.id]);
+  }, [id]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await axios.put(`/api/memes/${match.params.id}`, meme);
-    history.push("/");
-  };
-
-  const handleChange = (e) => {
-    setMeme({ ...meme, [e.target.name]: e.target.value });
+    setLoading(true);
+    const updatedMeme = { title, description, imageUrl };
+    await axios.put(`http://localhost:5000/memes/${id}`, updatedMeme);
+    setLoading(false);
+    navigate('/my-memes');
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="caption">Caption:</label>
-        <input
-          type="text"
-          name="caption"
-          value={meme.caption}
-          onChange={handleChange}
-        />
-      </div>
-      <div>
-        <label htmlFor="url">Image URL:</label>
-        <input
-          type="text"
-          name="url"
-          value={meme.url}
-          onChange={handleChange}
-        />
-      </div>
-      <button type="submit">Submit</button>
-    </form>
+    <div>
+      <h2>Edit Meme</h2>
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label htmlFor="title">Title</label>
+            <input
+              type="text"
+              id="title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+          </div>
+          <div>
+            <label htmlFor="description">Description</label>
+            <input
+              type="text"
+              id="description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+          </div>
+          <div>
+            <label htmlFor="imageUrl">Image URL</label>
+            <input
+              type="text"
+              id="imageUrl"
+              value={imageUrl}
+              onChange={(e) => setImageUrl(e.target.value)}
+            />
+          </div>
+          <button type="submit">Save Changes</button>
+        </form>
+      )}
+    </div>
   );
 };
 

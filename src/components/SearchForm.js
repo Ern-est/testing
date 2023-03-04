@@ -1,26 +1,33 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-function SearchForm(props) {
-  const [searchText, setSearchText] = useState('');
+function SearchForm() {
+  const [searchTerm, setSearchTerm] = useState('');
+  const navigate = useNavigate();
 
-  function handleSearchTextChange(event) {
-    setSearchText(event.target.value);
-  }
-
-  function handleSubmit(event) {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    // TODO: Implement search logic
-    props.onSearch(searchText);
-  }
+    navigate(`/search?q=${searchTerm}`);
+  };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Search:
-        <input type="text" value={searchText} onChange={handleSearchTextChange} />
-      </label>
-      <button type="submit">Search</button>
-    </form>
+    <div className="container">
+      <h1>Search for Memes</h1>
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Search..."
+            value={searchTerm}
+            onChange={(event) => setSearchTerm(event.target.value)}
+          />
+        </div>
+        <button type="submit" className="btn btn-primary">
+          Search
+        </button>
+      </form>
+    </div>
   );
 }
 

@@ -1,26 +1,46 @@
-import React, { useEffect, useState } from 'react';
-import MyMemes from './MyMemes';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 function AllMemes() {
   const [memes, setMemes] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
 
   useEffect(() => {
-    // TODO: Fetch all available memes
-    const allMemes = [
-      { id: 1, title: 'Funny Meme', imageUrl: 'https://example.com/meme1.jpg' },
-      { id: 2, title: 'Cute Meme', imageUrl: 'https://example.com/meme2.jpg' },
-      { id: 3, title: 'Cool Meme', imageUrl: 'https://example.com/meme3.jpg' },
-    ];
-    setMemes(allMemes);
+    const fetchMemes = async () => {
+      try {
+        const response = await axios.get('https://api.example.com/memes');
+        setMemes(response.data);
+        setLoading(false);
+      } catch (error) {
+        setError('Failed to fetch memes');
+        setLoading(false);
+      }
+    };
+    fetchMemes();
   }, []);
+
+  if (loading) {
+    return <div>Loading memes...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   return (
     <div>
-      <h2>All Memes</h2>
-      {memes.length === 0 ? (
-        <p>No memes available yet.</p>
-      ) : (
-        memes.map((meme) => <   MyMemes key={meme.id} title={meme.title} imageUrl={meme.imageUrl} />)
+      <h1>All Memes</h1>
+      {memes.length === 0 && <div>No memes found</div>}
+      {memes.length > 0 && (
+        <ul>
+          {memes.map((meme) => (
+            <li key={meme.id}>
+              <Link to={`/edit/${meme.id}`}>{meme.title}</Link>
+            </li>
+          ))}
+        </ul>
       )}
     </div>
   );

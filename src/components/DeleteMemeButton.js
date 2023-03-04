@@ -1,28 +1,27 @@
 import React from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import axios from 'axios';
 
-const DeleteMemeButton = ({ memeId, onDeleteMeme }) => {
-  const handleClick = () => {
-    const confirmDelete = window.confirm('Are you sure you want to delete this meme?');
-    if (confirmDelete) {
-      fetch(`http://localhost:9292/api/memes/${memeId}`, {
-        method: 'DELETE',
+function DeleteMemeButton() {
+  const navigate = useNavigate();
+  const { id } = useParams();
+
+  const handleDelete = () => {
+    axios
+      .delete(`/memes/${id}`)
+      .then(() => {
+        navigate('/my-memes');
       })
-        .then(response => response.json())
-        .then(data => {
-          console.log(data);
-          onDeleteMeme(memeId);
-        })
-        .catch(error => {
-          console.error(error);
-        });
-    }
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
-    <button className="delete-meme-btn" onClick={handleClick}>
-      Delete
-    </button>
+    <div>
+      <button onClick={handleDelete}>Delete Meme</button>
+    </div>
   );
-};
+}
 
 export default DeleteMemeButton;

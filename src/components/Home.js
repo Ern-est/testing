@@ -1,14 +1,12 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
 
-const Home = () => {
+function Home() {
   return (
-    <Route exact path="/">
-      <div className="container mt-4">
-        <h1 className="text-center">Welcome to Meme Generator App</h1>
-        <p className="text-center">Please register or login to use the app</p>
-      </div>
-    </Route>
+    <div className="container">
+      <h1>Welcome to MemeVerse!</h1>
+      <p>MemeVerse is the ultimate platform for sharing and discovering memes.</p>
+      <p>To get started, please <a href="/register">register</a> or <a href="/login">log in</a>.</p>
+    </div>
   );
 }
 
