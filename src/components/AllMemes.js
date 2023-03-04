@@ -10,7 +10,7 @@ function AllMemes() {
   useEffect(() => {
     const fetchMemes = async () => {
       try {
-        const response = await axios.get('https://api.example.com/memes');
+        const response = await axios.get('http://localhost:9292/all-memes');
         setMemes(response.data);
         setLoading(false);
       } catch (error) {

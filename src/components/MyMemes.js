@@ -9,7 +9,7 @@ function MyMemes() {
   useEffect(() => {
     const username = localStorage.getItem('username');
     axios
-      .get(`/api/memes/${username}`)
+      .get(`http://localhost:9292/my-memes`)
       .then((res) => {
         setMemes(res.data);
         setIsLoading(false);
@@ -22,7 +22,7 @@ function MyMemes() {
 
   const handleDelete = (id) => {
     axios
-      .delete(`/api/memes/${id}`)
+      .delete(`http://localhost:9292/memes${id}`)
       .then((res) => {
         setMemes((prevMemes) => prevMemes.filter((meme) => meme._id !== id));
       })

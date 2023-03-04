@@ -9,6 +9,7 @@ import AllMemes from './components/AllMemes';
 import SearchForm from './components/SearchForm';
 import EditMemeForm from './components/EditMemeForm';
 import DeleteMemeButton from './components/DeleteMemeButton';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
