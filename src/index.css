@@ -1,23 +1,4 @@
-body {
-  font-family: Arial, sans-serif;
-  background-color: yellowgreen;
-  color: #1a936f;
-}
 
-h1,
-h2 {
-  text-align: center;
-  margin: 1rem;
-}
-
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem;
-  background-color: #11110e;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(12, 236, 31, 0.2);
-}
 .container h1 {
   color: rgb(184, 57, 173);
   font-size: 50px;
@@ -34,7 +15,7 @@ h2 {
 .btn {
   background-color: #ffca28;
   border: none;
-  color: #fff;
+  color: rgb(179, 67, 67);
   padding: 0.5rem 1rem;
   font-size: 1rem;
   border-radius: 5px;
@@ -52,6 +33,7 @@ form {
   align-items: center;
   margin-top: 2rem;
   color: black;
+  background-color: #2df8bb;
 }
 
 form label {
@@ -84,64 +66,83 @@ form input[type="submit"] {
   margin-top: 0.5rem;
 }
 
-/* Add some color to the navbar */
-.navbar {
-  background-color: #007bff;
-}
 
-.nav-link {
-  color: rgb(233, 37, 240) !important;
-}
 
-.nav-link:hover {
-  color: #fff !important;
-}
-
-.navbar-brand {
-  font-size: 1.5rem;
-  color: rgb(209, 127, 127) !important;
-  
-}
-
-.navbar-toggler {
-  border: none;
-}
-
-.navbar-toggler:focus {
-  outline: none;
-}
-
-.navbar-toggler-icon {
-  background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba(255, 255, 255, 0.8)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-}
-
-.nav-item.active .nav-link {
-  background-color: rgba(255, 255, 255, 0.2);
-}
-
-/* Add some color to the footer */
-footer {
-  background-color: #222;
-  color: rgb(211, 72, 72);
-  padding: 1rem;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-footer a {
-  color: rgb(219, 60, 60);
-}
-
-footer a:hover {
-  color: #ffc107;
-}
 body {
-  background-color: green;
+  background-image: url(https://media.istockphoto.com/id/1404670361/photo/party-dog.jpg?s=612x612&w=0&k=20&c=qsdzmJ6xnoDENKcGbX7fuOLGnNSsE5wH7SYAHQSWXG4=);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
 }
+nav {
+  background-color: #050707;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 0.02em;
+}
+
+nav ul {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 30px;
+}
+
+nav ul li {
+  margin-right: 20px;
+}
+
+nav ul li:last-child {
+  margin-right: 0;
+}
+
+nav ul li a {
+  color: rgb(39, 211, 188);
+  text-decoration: none;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+nav ul li a:hover {
+  background-color: #e47216;
+  color: rgb(79, 23, 90);
+}
+
+.navbar-brand {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.navbar-text {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.btn-outline-danger {
+  color: #dc3545;
+  border-color: #dc3545;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 10px 20px;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-danger:hover {
+  background-color: #dc3545;
+  color: #fff;
+}
+
 
 .container {
   background-color: rgb(15, 15, 14);
@@ -181,7 +182,7 @@ input {
 }
 
 button {
-  background-color: #1a936f;
+  background-color: #050505;
   color: gray;
   padding: 10px 20px;
   border-radius: 5px;

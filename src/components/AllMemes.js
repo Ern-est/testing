@@ -37,7 +37,9 @@ function AllMemes() {
         <ul>
           {memes.map((meme) => (
             <li key={meme.id}>
-              <Link to={`/edit/${meme.id}`}>{meme.title}</Link>
+              <Link to={`/edit/${meme.id}`}>
+                <img src={meme.image_url} alt={meme.title} />
+              </Link>
             </li>
           ))}
         </ul>
